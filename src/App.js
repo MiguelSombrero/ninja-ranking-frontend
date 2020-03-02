@@ -1,26 +1,76 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setUserToState } from './reducers/loginReducer'
+import { Container } from 'react-bootstrap'
+import NavigationBar from './components/NavigationBar'
+import FrontPage from './components/FrontPage'
+import RegisterForm from './components/RegisterForm'
+import TournamentForm from './components/TournamentForm'
+import Footer from './components/Footer'
 
-function App() {
+import './App.css'
+
+const App = (props) => {
+
+  useEffect(() => {
+    const logged = window.localStorage.getItem('loggedNinjaRankingUser')
+    if (logged) {
+      props.setUserToState(JSON.parse(logged))
+    }
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+        <NavigationBar
+          user={props.user}
+        />
+
+        <Route
+          exact path='/'
+          render={() =>
+            <FrontPage
+              user={props.user}
+            />
+          }
+        />
+
+        <Route
+          exact path='/register'
+          render={() =>
+            <RegisterForm
+            />
+          }
+        />
+
+        {props.user &&
+          <>
+            <Route
+              exact path='/tournament'
+              render={() =>
+                <TournamentForm
+                />
+              }
+            />
+          </>
+        }
+
+        <Footer
+        />
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = {
+  setUserToState
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
