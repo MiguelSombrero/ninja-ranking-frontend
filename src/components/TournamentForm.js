@@ -21,7 +21,7 @@ const TournamentForm = (props) => {
 
     try {
       await props.createTournament({ name: name.value })
-      props.history.push('/')
+      props.history.push('/tournaments')
 
     } catch (exception) {
       console.log('Creation of a tournament failed', exception)
@@ -31,7 +31,7 @@ const TournamentForm = (props) => {
   return (
     <Container fluid>
       <NinjaBanner
-        text='Create new Ninja Tournament'
+        text='Create Ninja Tournament'
       />
       <Row>
         <Col className='form'>

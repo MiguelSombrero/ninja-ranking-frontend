@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setUserToState } from './reducers/loginReducer'
+import { getAllTournaments } from './reducers/tournamentsReducer'
 import NavigationBar from './components/NavigationBar'
 import FrontPage from './components/FrontPage'
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import TournamentForm from './components/TournamentForm'
+import Tournaments from './components/Tournaments'
 import Footer from './components/Footer'
 
 import './App.css'
@@ -19,6 +21,13 @@ const App = (props) => {
       props.setUserToState(JSON.parse(logged))
     }
   }, [])
+
+  useEffect(() => {
+    props.getAllTournaments()
+  }, [])
+
+  const tournamentsByLoggedUser = () =>
+    props.tournaments.filter(t => t.account_id === props.user.id)
 
   return (
     <>
@@ -61,6 +70,15 @@ const App = (props) => {
                 />
               }
             />
+
+            <Route
+              exact path='/tournaments'
+              render={() =>
+                <Tournaments
+                  tournaments={tournamentsByLoggedUser()}
+                />
+              }
+            />
           </>
         }
 
@@ -73,12 +91,14 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    tournaments: state.tournaments
   }
 }
 
 const mapDispatchToProps = {
-  setUserToState
+  setUserToState,
+  getAllTournaments
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

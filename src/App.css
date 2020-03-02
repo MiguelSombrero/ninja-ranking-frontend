@@ -23,7 +23,7 @@
 .ninja-button:hover {
     background-color: rgb(218, 218, 218);
     color: rgb(54, 51, 124);
-    border: 5px solid rgb(252, 156, 217);
+    border: 3px solid rgb(252, 156, 217);
 }
 
 .ninja-banner {
