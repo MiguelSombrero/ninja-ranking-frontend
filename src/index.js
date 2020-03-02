@@ -6,7 +6,6 @@ import store from './store'
 import { IconContext } from 'react-icons'
 
 import './index.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <IconContext.Provider value={{ size: '1.5rem', color: 'white' }}>

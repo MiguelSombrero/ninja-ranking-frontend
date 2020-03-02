@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Row, Col, Container, Jumbotron } from 'react-bootstrap'
+import { Form, Row, Col, Container } from 'react-bootstrap'
 import NinjaButton from './NinjaButton'
 import { registerAccount } from '../reducers/accountsReducer'
 import { useTextField } from '../hooks'
+import NinjaBanner from './NinjaBanner'
 
 const RegisterForm = (props) => {
   const [validated, setValidated] = useState(false)
@@ -36,12 +37,12 @@ const RegisterForm = (props) => {
 
   return (
     <Container fluid>
-      <Jumbotron>
-        Register an account
-      </Jumbotron>
-      <Row className='mb-3'>
+      <NinjaBanner
+        text='Create new Ninja Account'
+      />
+      <Row>
         <Col className='form'>
-          <Form noValidate validated={validated} onSubmit={handleRegister} id='registerForm' >
+          <Form noValidate validated={validated} onSubmit={handleRegister} >
             <Form.Group >
               <Form.Label>Name</Form.Label>
               <Form.Control {...name} placeholder='Name' />

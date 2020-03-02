@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Row, Col, Container, Jumbotron } from 'react-bootstrap'
+import { Form, Row, Col, Container } from 'react-bootstrap'
 import { useTextField } from '../hooks'
 import { createTournament } from '../reducers/tournamentsReducer'
 import NinjaButton from './NinjaButton'
+import NinjaBanner from './NinjaBanner'
 
 const TournamentForm = (props) => {
   const [validated, setValidated] = useState(false)
@@ -29,14 +30,14 @@ const TournamentForm = (props) => {
 
   return (
     <Container fluid>
-      <Jumbotron>
-        Create new blog
-      </Jumbotron>
+      <NinjaBanner
+        text='Create new Ninja Tournament'
+      />
       <Row>
         <Col className='form'>
           <Form noValidate validated={validated} onSubmit={handleCreateTournament} >
             <Form.Group >
-              <Form.Label>Name of the tournament</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control {...name} placeholder='Name' />
               <Form.Control.Feedback type='invalid' >{nameErrors}</Form.Control.Feedback>
             </Form.Group>

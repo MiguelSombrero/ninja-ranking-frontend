@@ -18,17 +18,16 @@ const Navigation = (props) => {
   }
 
   return (
-    <Container fluid>
-      <Row>
-        <Navbar as={Col} collapseOnSelect expand='lg' bg='dark' variant='dark' >
-          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-          <Navbar.Collapse id='responsive-navbar-nav'>
-            <Nav className='mr-auto'>
-              <Nav.Link href='#' as='span'>
-                <NavLink to='/' ><IoMdHome /></NavLink>
-              </Nav.Link>
+    <Row>
+      <Navbar as={Col} collapseOnSelect expand='lg' style={{ backgroundColor: 'rgb(252, 156, 217)' }}>
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='mr-auto'>
+            <Nav.Link href='#' as='span'>
+              <NavLink to='/' ><IoMdHome /></NavLink>
+            </Nav.Link>
 
-              {!props.user &&
+            {!props.user &&
               <>
                 <Nav.Link href='#' as='span'>
                   <NavLink to='/login' >Login</NavLink>
@@ -37,9 +36,9 @@ const Navigation = (props) => {
                   <NavLink to='/register' >Create account</NavLink>
                 </Nav.Link>
               </>
-              }
+            }
 
-              {props.user &&
+            {props.user &&
               <>
                 <Nav.Link href='#' as='span' >
                   <NavLink to='/tournaments' >My tournaments</NavLink>
@@ -51,12 +50,11 @@ const Navigation = (props) => {
                   <Nav.Item onClick={handleLogout} ><IoIosLogOut /></Nav.Item>
                 </Nav.Link>
               </>
-              }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </Row>
-    </Container>
+            }
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </Row>
   )
 }
 

@@ -1,32 +1,33 @@
 .App {
     text-align: center;
-  }
-  
-.ninja-button {
-  background-color: rgb(204, 102, 0);
-  color: white;
-  display: block;
-  width: 100%;
-  border: 3px solid green;
-  padding: 10px;
-  font-size: 1.3rem;
-  transition: 0.5s;
-}
-  
-.ninja-button:hover {
-  background-color: white;
-  color: green;
-  border: 3px solid rgb(204, 102, 0);
-}
-
-body {
-  background-color: white;
 }
   
 .form {
-  max-width: 25rem;
-  margin: auto;
-  padding: 1rem;
-  background-color: whitesmoke;
+    max-width: 25rem;
+    margin: auto;
+    padding: 1rem;
+    background-color: whitesmoke;
 }
-  
+
+.ninja-button {
+    background-color:rgb(252, 156, 217);
+    color: rgb(218, 218, 218);
+    display: block;
+    width: 100%;
+    border: 3px solid rgb(54, 51, 124);
+    padding: 10px;
+    font-size: 1.3rem;
+    transition: 0.2s;
+}
+    
+.ninja-button:hover {
+    background-color: rgb(218, 218, 218);
+    color: rgb(54, 51, 124);
+    border: 5px solid rgb(252, 156, 217);
+}
+
+.ninja-banner {
+    background-color: rgb(252, 156, 217);
+    text-align: center;
+    border-top: 3px solid rgb(218, 218, 218);
+}

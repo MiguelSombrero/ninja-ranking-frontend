@@ -34,8 +34,8 @@ const LoginForm = (props) => {
   }
 
   return (
-    <Container fluid className='form'>
-      <Row>
+    <Container fluid>
+      <Row className='form'>
         <Col>
           <Form noValidate validated={validated} onSubmit={handleLogin} >
             <Form.Group >
@@ -52,14 +52,14 @@ const LoginForm = (props) => {
           </Form>
         </Col>
       </Row>
-      <Row className='mt-2'>
-        <Col-6 className='text-center'>
+      <Row className='form'>
+        <Col-6>
           <small>
             <Link to='/register'> Not yet a member?</Link>
           </small>
         </Col-6>
-        <Col-6 className='text-right'>
-          <small>
+        <Col-6>
+          <small className='text-right'>
             <Link to='/register'> Forgot your password?</Link>
           </small>
         </Col-6>

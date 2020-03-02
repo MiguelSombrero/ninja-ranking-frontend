@@ -1,37 +1,40 @@
 import React from 'react'
-import { Row, Col, Jumbotron, Container } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
 import LoginForm from './LoginForm'
+import NinjaBanner from './NinjaBanner'
 
 const FrontPage = (props) => {
 
   return (
-    <Container fluid>
-      <Row>
-        <Jumbotron as={Col} >
-          Ninja Ranking 2020
-        </Jumbotron>
-      </Row>
+    <>
+      <Image
+        src='/ninja_ranking_banner.jpg'
+        style={{ width: '100%', height: 'auto' }}
+      />
 
       {!props.user &&
-      <>
-        <Row>
-          <Col>
-            <LoginForm />
-          </Col>
-        </Row>
-      </>
+        <>
+          <NinjaBanner
+            text='Login, Ninja!'
+          />
+          <Row>
+            <Col>
+              <LoginForm />
+            </Col>
+          </Row>
+        </>
       }
 
       {props.user &&
-      <>
-        <Row>
-          <Col className='text-center'>
-            <h2>Recent posts</h2>
-          </Col>
-        </Row>
-      </>
+        <>
+          <Row>
+            <Col className='text-center'>
+              <h2>Recent posts</h2>
+            </Col>
+          </Row>
+        </>
       }
-    </Container>
+    </>
   )
 }
 

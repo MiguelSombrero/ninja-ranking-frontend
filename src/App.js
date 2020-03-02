@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setUserToState } from './reducers/loginReducer'
-import { Container } from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar'
 import FrontPage from './components/FrontPage'
 import RegisterForm from './components/RegisterForm'
+import LoginForm from './components/LoginForm'
 import TournamentForm from './components/TournamentForm'
 import Footer from './components/Footer'
 
@@ -40,6 +40,14 @@ const App = (props) => {
           exact path='/register'
           render={() =>
             <RegisterForm
+            />
+          }
+        />
+
+        <Route
+          exact path='/login'
+          render={() =>
+            <LoginForm
             />
           }
         />
