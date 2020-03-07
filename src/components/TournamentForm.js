@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Row, Col, Container } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import { useTextField } from '../hooks'
 import { createTournament } from '../reducers/tournamentsReducer'
 import NinjaButton from './NinjaButton'
@@ -29,7 +29,7 @@ const TournamentForm = (props) => {
   }
 
   return (
-    <Container fluid>
+    <>
       <NinjaBanner
         text='Create Ninja Tournament'
       />
@@ -45,7 +45,7 @@ const TournamentForm = (props) => {
           </Form>
         </Col>
       </Row>
-    </Container>
+    </>
   )
 }
 

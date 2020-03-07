@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setUserToState } from './reducers/loginReducer'
 import { getAllTournaments } from './reducers/tournamentsReducer'
+import { Container } from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar'
 import FrontPage from './components/FrontPage'
 import RegisterForm from './components/RegisterForm'
@@ -10,6 +11,7 @@ import LoginForm from './components/LoginForm'
 import TournamentForm from './components/TournamentForm'
 import Tournaments from './components/Tournaments'
 import Footer from './components/Footer'
+import ManageTournament from './components/ManageTournament'
 
 import './App.css'
 
@@ -29,8 +31,11 @@ const App = (props) => {
   const tournamentsByLoggedUser = () =>
     props.tournaments.filter(t => t.account_id === props.user.id)
 
+  const tournamentById = (id) =>
+    props.tournaments.find(t => t.id === Number(id))
+
   return (
-    <>
+    <Container fluid>
       <BrowserRouter>
         <NavigationBar
           user={props.user}
@@ -79,13 +84,23 @@ const App = (props) => {
                 />
               }
             />
+
+            <Route
+              exact path='/tournaments/:id'
+              render={({ match }) =>
+                <ManageTournament
+                  tournament={tournamentById(match.params.id)}
+                />
+              }
+            />
           </>
         }
 
         <Footer
         />
+
       </BrowserRouter>
-    </>
+    </Container>
   )
 }
 

@@ -1,27 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { createObstacle } from '../reducers/obstaclesReducer'
+import { createPlayer } from '../reducers/playersReducer'
 import { Nav } from 'react-bootstrap'
 import NinjaButton from './NinjaButton'
+import ObstacleForm from './ObstacleForm'
+import PlayerForm from './PlayerForm'
 
-const NavigationSidePanel = () => {
+const NavigationSidePanel = (props) => {
+
   return (
     <Nav className='flex-column'>
-      <Nav.Link href='#' as='span'>
-        <NinjaButton
-          text='press button'
-        />
-      </Nav.Link>
-      <Nav.Link href='#' as='span'>
-        <NinjaButton
-          text='press button'
-        />
-      </Nav.Link>
-      <Nav.Link href='#' as='span'>
-        <NinjaButton
-          text='press button'
-        />
-      </Nav.Link>
+      <ObstacleForm
+        createObstacle={props.createObstacle}
+        tournament={props.tournament}
+      />
+      <PlayerForm
+        createPlayer={props.createPlayer}
+        tournament={props.tournament}
+      />
+      <NinjaButton
+        text='End tournament'
+      />
+      <NinjaButton
+        text='Inactive tournaments'
+      />
     </Nav>
   )
 }
 
-export default NavigationSidePanel
+const mapDispatchToProps = {
+  createObstacle, createPlayer
+}
+
+export default connect(null, mapDispatchToProps)(NavigationSidePanel)

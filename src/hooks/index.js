@@ -14,7 +14,7 @@ export const useResource = (baseUrl) => {
     return res.data
   }
 
-  const getOne = async identifier => {
+  const getByIdentifier = async identifier => {
     const res = await axios.get(`${baseUrl}/${identifier}`)
     return res.data
   }
@@ -45,7 +45,7 @@ export const useResource = (baseUrl) => {
   }
 
   return  {
-    create, getAll, getOne, update, login
+    create, getAll, getByIdentifier, update, login
   }
 }
 
@@ -61,10 +61,6 @@ export const useTextField = (type, minLength, maxLength, required = false) => {
     setValidationMessage('field must be within ' + minLength + '-' + maxLength + ' characters')
   }
 
-  const setDefaultValue = (value) => {
-    setValue(value)
-  }
-
   return [
     {
       type,
@@ -76,6 +72,6 @@ export const useTextField = (type, minLength, maxLength, required = false) => {
       onInvalid
     },
     validationMessage,
-    setDefaultValue
+    setValue
   ]
 }

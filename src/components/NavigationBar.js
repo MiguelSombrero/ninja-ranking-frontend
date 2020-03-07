@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../reducers/loginReducer'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Navbar, Nav, Row, Col, Container } from 'react-bootstrap'
+import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 import { IoMdHome, IoIosLogOut } from 'react-icons/io'
 
 const Navigation = (props) => {
