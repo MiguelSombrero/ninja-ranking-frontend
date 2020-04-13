@@ -1,24 +1,16 @@
-import React, { useEffect } from 'react'
-import { getAllPlayers } from '../reducers/playersReducer'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import NavigationSidePanel from './NavigationSidePanel'
 import NinjaBanner from './NinjaBanner'
 
-const ManageTournament = ({ tournament, players, getAllPlayers }) => {
-  useEffect(() => {
-    getAllPlayers()
-  }, [])
-
+const ManageTournament = ({ tournament, players, obstacles }) => {
   if (!tournament) {
     return null
   }
 
-  const playersTohow = players.filter(p => p.tournament_id === tournament.id)
-
-  const renderObstacles = tournament.obstacles[0] === null
+  const renderObstacles = obstacles.length === 0
     ? () => 'no obstacles'
-    : () => tournament.obstacles.map(t =>
+    : () => obstacles.map(t =>
       <ListGroup.Item key={t.id} >
         {t.name}
       </ListGroup.Item>
@@ -26,7 +18,7 @@ const ManageTournament = ({ tournament, players, getAllPlayers }) => {
 
   const renderPlayers = players.length === 0
     ? () => 'no players'
-    : () => playersTohow.map(p =>
+    : () => players.map(p =>
       <ListGroup.Item key={p.id} >
         {p.nickname}
       </ListGroup.Item>
@@ -62,14 +54,4 @@ const ManageTournament = ({ tournament, players, getAllPlayers }) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    players: state.players
-  }
-}
-
-const mapDispatchToProps = {
-  getAllPlayers
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ManageTournament)
+export default ManageTournament

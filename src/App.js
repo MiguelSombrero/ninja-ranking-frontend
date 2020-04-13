@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setUserToState } from './reducers/loginReducer'
 import { getAllTournaments } from './reducers/tournamentsReducer'
+import { getAllPlayers } from './reducers/playersReducer'
+import { getAllObstacles } from './reducers/obstaclesReducer'
 import { Container } from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar'
 import FrontPage from './components/FrontPage'
@@ -28,11 +30,25 @@ const App = (props) => {
     props.getAllTournaments()
   }, [])
 
+  useEffect(() => {
+    props.getAllPlayers()
+  }, [])
+
+  useEffect(() => {
+    props.getAllObstacles()
+  }, [])
+
   const tournamentsByLoggedUser = () =>
     props.tournaments.filter(t => t.account_id === props.user.id)
 
   const tournamentById = (id) =>
     props.tournaments.find(t => t.id === Number(id))
+
+  const playersByTournamentId = (id) =>
+    props.players.filter(p => p.tournament_id === Number(id))
+
+  const obstaclesByTournamentId = (id) =>
+    props.obstacles.filter(o => o.tournament_id === Number(id))
 
   return (
     <Container fluid>
@@ -90,6 +106,8 @@ const App = (props) => {
               render={({ match }) =>
                 <ManageTournament
                   tournament={tournamentById(match.params.id)}
+                  players={playersByTournamentId(match.params.id)}
+                  obstacles={obstaclesByTournamentId(match.params.id)}
                 />
               }
             />
@@ -107,13 +125,17 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    tournaments: state.tournaments
+    tournaments: state.tournaments,
+    players: state.players,
+    obstacles: state.obstacles
   }
 }
 
 const mapDispatchToProps = {
   setUserToState,
-  getAllTournaments
+  getAllTournaments,
+  getAllPlayers,
+  getAllObstacles
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

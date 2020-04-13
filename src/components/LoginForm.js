@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { Form, Row, Col, Container } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import { loginUser } from '../reducers/loginReducer'
 import { useTextField } from '../hooks'
 import NinjaButton from './NinjaButton'
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
   }
 
   return (
-    <Container fluid>
+    <>
       <Row className='form'>
         <Col>
           <Form noValidate validated={validated} onSubmit={handleLogin} >
@@ -53,18 +53,18 @@ const LoginForm = (props) => {
         </Col>
       </Row>
       <Row className='form'>
-        <Col-6>
-          <small>
+        <Col xs={12} md={6} >
+          <small className='float-left'>
             <Link to='/register'> Not yet a member?</Link>
           </small>
-        </Col-6>
-        <Col-6>
-          <small className='text-right'>
+        </Col>
+        <Col xs={12} md={6}>
+          <small className='float-right'>
             <Link to='/register'> Forgot your password?</Link>
           </small>
-        </Col-6>
+        </Col>
       </Row>
-    </Container>
+    </>
   )
 }
 

@@ -15,13 +15,9 @@ const FrontPage = (props) => {
       {!props.user &&
         <>
           <NinjaBanner
-            text='Login, Ninja!'
+            text='Login Ninja!'
           />
-          <Row>
-            <Col>
-              <LoginForm />
-            </Col>
-          </Row>
+          <LoginForm />
         </>
       }
 

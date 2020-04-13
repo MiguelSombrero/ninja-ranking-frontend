@@ -16,17 +16,9 @@ const Tournament = ({ tournament }) => {
       </Row>
       <Row>
         <Col>
-          <h4 className='text-muted'>
+          <h6 className='text-muted'>
             Created on {moment(tournament.created).format('MMMM Do YYYY')}
-          </h4>
-        </Col>
-      </Row>
-      <Row className='mb-4' >
-        <Col>
-          Items here
-        </Col>
-        <Col>
-          players here
+          </h6>
         </Col>
       </Row>
     </>

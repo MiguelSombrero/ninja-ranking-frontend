@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Form, Row, Col, Container } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import NinjaButton from './NinjaButton'
 import { registerAccount } from '../reducers/accountsReducer'
 import { useTextField } from '../hooks'
@@ -36,7 +36,7 @@ const RegisterForm = (props) => {
   }
 
   return (
-    <Container fluid>
+    <>
       <NinjaBanner
         text='Create new Ninja Account'
       />
@@ -62,7 +62,7 @@ const RegisterForm = (props) => {
           </Form>
         </Col>
       </Row>
-    </Container>
+    </>
   )
 }
 
