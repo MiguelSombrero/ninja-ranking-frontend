@@ -8,7 +8,6 @@ import ObstacleForm from './ObstacleForm'
 import PlayerForm from './PlayerForm'
 
 const NavigationSidePanel = (props) => {
-
   return (
     <Nav className='flex-column'>
       <ObstacleForm
@@ -23,7 +22,7 @@ const NavigationSidePanel = (props) => {
         text='End tournament'
       />
       <NinjaButton
-        text='Inactive tournaments'
+        text='Past tournaments'
       />
     </Nav>
   )
