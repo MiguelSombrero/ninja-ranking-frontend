@@ -1,16 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../reducers/loginReducer'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 import { IoMdHome, IoIosLogOut } from 'react-icons/io'
 
 const Navigation = (props) => {
+  const dispatch = useDispatch()
 
   const handleLogout = () => {
     try {
-      props.logoutUser()
+      dispatch(logoutUser())
       props.history.push('/')
     } catch (exception) {
       console.log('logout failed, bollocks', exception)
@@ -58,8 +59,4 @@ const Navigation = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  logoutUser
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(Navigation))
+export default withRouter(Navigation)

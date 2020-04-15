@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
 import { useTextField } from '../hooks'
@@ -7,6 +7,7 @@ import { createObstacle } from '../reducers/obstaclesReducer'
 import NinjaButton from './NinjaButton'
 
 const ObstacleForm = (props) => {
+  const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [name, nameErrors, setName] = useTextField('text', 1, 20, true)
 
@@ -19,10 +20,10 @@ const ObstacleForm = (props) => {
     }
 
     try {
-      await props.createObstacle({
+      const savedObstacle = dispatch(createObstacle({
         name: name.value,
         tournament_id: props.tournament.id
-      })
+      }))
 
       setName('')
 
@@ -43,8 +44,4 @@ const ObstacleForm = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  createObstacle
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(ObstacleForm))
+export default withRouter(ObstacleForm)

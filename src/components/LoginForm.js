@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Form, Row, Col } from 'react-bootstrap'
@@ -8,6 +8,7 @@ import { useTextField } from '../hooks'
 import NinjaButton from './NinjaButton'
 
 const LoginForm = (props) => {
+  const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [username, usernameErrors] = useTextField('text', 5, 20, true)
   const [password, passwordErrors] = useTextField('password', 5, 20, true)
@@ -21,10 +22,10 @@ const LoginForm = (props) => {
     }
 
     try {
-      await props.loginUser({
+      dispatch(loginUser({
         username: username.value,
         password: password.value
-      })
+      }))
 
       props.history.push('/')
 
@@ -68,8 +69,4 @@ const LoginForm = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  loginUser
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(LoginForm))
+export default withRouter(LoginForm)

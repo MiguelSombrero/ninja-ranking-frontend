@@ -32,6 +32,8 @@ export const createObstacle = (obstacle) => {
       type: 'CREATE_OBSTACLE',
       newObstacle
     })
+
+    return newObstacle
   }
 }
 

@@ -7,6 +7,10 @@ import NinjaButton from './NinjaButton'
 const Tournaments = ({ tournaments }) => {
   const [showPastTournaments, SetShowPastTournaments] = useState(false)
 
+  if (!tournaments) {
+    return null
+  }
+
   const activeTournaments = tournaments.filter(t => t.active)
   const inactiveTournaments = tournaments.filter(t => !t.active)
 

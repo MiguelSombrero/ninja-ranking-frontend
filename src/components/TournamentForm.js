@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form, Row, Col } from 'react-bootstrap'
 import { useTextField } from '../hooks'
@@ -8,6 +8,7 @@ import NinjaButton from './NinjaButton'
 import NinjaBanner from './NinjaBanner'
 
 const TournamentForm = (props) => {
+  const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [name, nameErrors] = useTextField('text', 1, 50, true)
 
@@ -20,7 +21,10 @@ const TournamentForm = (props) => {
     }
 
     try {
-      await props.createTournament({ name: name.value })
+      dispatch(createTournament({
+        name: name.value
+      }))
+
       props.history.push('/tournaments')
 
     } catch (exception) {
@@ -49,8 +53,4 @@ const TournamentForm = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  createTournament
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(TournamentForm))
+export default withRouter(TournamentForm)

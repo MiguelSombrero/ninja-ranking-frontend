@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createPlayer } from '../reducers/playersReducer'
 import { Form } from 'react-bootstrap'
 import { useTextField } from '../hooks'
 import NinjaButton from './NinjaButton'
 
 const PlayerForm = (props) => {
+  const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [nickname, nicknameErrors, setNickname] = useTextField('text', 1, 50, true)
 
@@ -16,10 +19,10 @@ const PlayerForm = (props) => {
     }
 
     try {
-      await props.createPlayer({
+      dispatch(createPlayer({
         nickname: nickname.value,
         tournament_id: props.tournament.id
-      })
+      }))
 
       setNickname('')
 
