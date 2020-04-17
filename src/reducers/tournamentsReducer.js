@@ -8,6 +8,8 @@ const tournamentsReducer = (state = [], action) => {
     return action.tournaments
   case 'CREATE_TOURNAMENT':
     return [...state, action.newTournament ]
+  case 'UPDATE_TOURNAMENT':
+    return state.map(t => t.id === action.updatedTournament.id ? action.updatedTournament : t)
   default:
     return state
   }
@@ -32,6 +34,13 @@ export const createTournament = (tournament) => {
       type: 'CREATE_TOURNAMENT',
       newTournament
     })
+  }
+}
+
+export const updateTournament = updatedTournament => {
+  return {
+    type: 'UPDATE_TOURNAMENT',
+    updatedTournament
   }
 }
 

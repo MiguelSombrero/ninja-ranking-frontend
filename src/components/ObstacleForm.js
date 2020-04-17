@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
 import { useTextField } from '../hooks'
 import { createObstacle } from '../reducers/obstaclesReducer'
+import { updateTournament } from '../reducers/tournamentsReducer'
 import NinjaButton from './NinjaButton'
 
-const ObstacleForm = (props) => {
+const ObstacleForm = ({ tournament }) => {
   const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [name, nameErrors, setName] = useTextField('text', 1, 20, true)
@@ -20,11 +21,17 @@ const ObstacleForm = (props) => {
     }
 
     try {
-      const savedObstacle = dispatch(createObstacle({
+      const savedObstacle = await dispatch(createObstacle({
         name: name.value,
-        tournament_id: props.tournament.id
+        tournament_id: tournament.id
       }))
 
+      const updatedTournament = {
+        ...tournament,
+        obstacles: [...tournament.obstacles, savedObstacle]
+      }
+
+      dispatch(updateTournament(updatedTournament))
       setName('')
 
     } catch (exception) {

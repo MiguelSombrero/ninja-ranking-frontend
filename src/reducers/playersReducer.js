@@ -8,6 +8,8 @@ const playersReducer = (state = [], action) => {
     return action.players
   case 'CREATE_PLAYER':
     return [...state, action.newPlayer ]
+  case 'UPDATE_PLAYER':
+    return state.map(p => p.id === action.updatedPlayer.id ? action.updatedPlayer : p)
   default:
     return state
   }
@@ -32,6 +34,13 @@ export const createPlayer = player => {
       type: 'CREATE_PLAYER',
       newPlayer
     })
+  }
+}
+
+export const updatePlayer = updatedPlayer => {
+  return {
+    type: 'UPDATE_PLAYER',
+    updatedPlayer
   }
 }
 

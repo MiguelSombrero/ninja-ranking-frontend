@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import NinjaBanner from './NinjaBanner'
-import Tournament from './Tournament'
+import TournamentOverview from './TournamentOverview'
 import NinjaButton from './NinjaButton'
 
 const Tournaments = ({ tournaments }) => {
@@ -22,7 +22,7 @@ const Tournaments = ({ tournaments }) => {
       <Row>
         <Col xs={12} sm={{ span: 6, offset: 3 }} >
           {activeTournaments.map(t =>
-            <Tournament
+            <TournamentOverview
               key={t.id}
               tournament={t}
             />
@@ -36,7 +36,7 @@ const Tournaments = ({ tournaments }) => {
         <Col xs={12} sm={{ span: 6, offset: 3 }} >
           {showPastTournaments ?
             inactiveTournaments.map(t =>
-              <Tournament
+              <TournamentOverview
                 key={t.id}
                 tournament={t}
               />

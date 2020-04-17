@@ -32,6 +32,8 @@ export const createResult = (result) => {
       type: 'CREATE_RESULT',
       newResult
     })
+
+    return newResult
   }
 }
 

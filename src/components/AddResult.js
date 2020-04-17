@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Form, Col } from 'react-bootstrap'
 import { createResult } from '../reducers/resultsReducer'
+import { updatePlayer } from '../reducers/playersReducer'
 import { useDispatch } from 'react-redux'
 import NinjaButton from './NinjaButton'
 
@@ -41,7 +42,13 @@ const AddResult = ({ show, close, player, obstacles }) => {
     }
 
     try {
-      dispatch(createResult(result))
+      const savedResult = await dispatch(createResult(result))
+
+      const updatedPlayer = { ...player,
+        results: [...player.results, savedResult]
+      }
+
+      dispatch(updatePlayer(updatedPlayer))
       close()
 
     } catch (exception) {
