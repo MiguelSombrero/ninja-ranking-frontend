@@ -3,29 +3,29 @@ import { Row, Col, Image } from 'react-bootstrap'
 import LoginForm from './LoginForm'
 import NinjaBanner from './NinjaBanner'
 
-const FrontPage = (props) => {
+const FrontPage = ({ user }) => {
 
   return (
     <>
-      <Image
+      <Image fluid
         src='/ninja_ranking_banner.jpg'
         style={{ width: '100%', height: 'auto' }}
       />
 
-      {!props.user &&
+      {!user &&
         <>
-          <NinjaBanner
-            text='Login Ninja!'
-          />
           <LoginForm />
         </>
       }
 
-      {props.user &&
+      {user &&
         <>
           <Row>
             <Col className='text-center'>
-              <h2>Recent posts</h2>
+              <NinjaBanner
+                text={`Welcome back ${user.name}!`}
+                type='description'
+              />
             </Col>
           </Row>
         </>

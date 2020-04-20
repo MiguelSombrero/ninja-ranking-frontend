@@ -36,6 +36,9 @@ const LoginForm = (props) => {
 
   return (
     <>
+      <h2 id='loginform' className='text-center mt-4'>
+        Login to Ninja Ranking
+      </h2>
       <Row className='form'>
         <Col>
           <Form noValidate validated={validated} onSubmit={handleLogin} >

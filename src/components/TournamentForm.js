@@ -41,7 +41,7 @@ const TournamentForm = (props) => {
         <Col className='form'>
           <Form noValidate validated={validated} onSubmit={handleCreateTournament} >
             <Form.Group >
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Name of the Tournament</Form.Label>
               <Form.Control {...name} placeholder='Name' />
               <Form.Control.Feedback type='invalid' >{nameErrors}</Form.Control.Feedback>
             </Form.Group>

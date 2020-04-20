@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserToState } from './reducers/loginReducer'
 import { getAllTournaments } from './reducers/tournamentsReducer'
@@ -8,11 +9,11 @@ import { Container } from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar'
 import FrontPage from './components/FrontPage'
 import RegisterForm from './components/RegisterForm'
-import LoginForm from './components/LoginForm'
 import TournamentForm from './components/TournamentForm'
 import Tournaments from './components/Tournaments'
 import Footer from './components/Footer'
 import ManageTournament from './components/ManageTournament'
+import { GoArrowUp } from 'react-icons/go'
 
 import './App.css'
 
@@ -41,7 +42,7 @@ const App = () => {
     loggedUser && tournaments.filter(t => t.account_id === loggedUser.id)
 
   return (
-    <Container fluid>
+    <Container fluid className='px-0' id='top'>
       <BrowserRouter>
         <NavigationBar
           user={loggedUser}
@@ -50,10 +51,6 @@ const App = () => {
         <Switch>
           <Route path='/register'>
             <RegisterForm />
-          </Route>
-
-          <Route path='/login'>
-            <LoginForm />
           </Route>
 
           <Route path='/tournaments/:id'>
@@ -78,6 +75,12 @@ const App = () => {
             />
           </Route>
         </Switch>
+
+        <HashLink smooth to='/#top'>
+          <GoArrowUp
+            style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: '9999' }}
+          />
+        </HashLink>
 
         <Footer/>
       </BrowserRouter>

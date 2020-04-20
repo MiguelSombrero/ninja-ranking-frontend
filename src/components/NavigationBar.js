@@ -1,18 +1,18 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 import { logoutUser } from '../reducers/loginReducer'
 import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
-import { IoMdHome, IoIosLogOut } from 'react-icons/io'
+import { GoHome } from 'react-icons/go'
 
-const Navigation = (props) => {
+const Navigation = ({ user }) => {
   const dispatch = useDispatch()
 
   const handleLogout = () => {
     try {
       dispatch(logoutUser())
-      props.history.push('/')
     } catch (exception) {
       console.log('logout failed, bollocks', exception)
     }
@@ -25,34 +25,38 @@ const Navigation = (props) => {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
             <Nav.Link href='#' as='span'>
-              <NavLink to='/' ><IoMdHome /></NavLink>
+              <NavLink to='/' ><GoHome /></NavLink>
             </Nav.Link>
-
-            {!props.user &&
-              <>
-                <Nav.Link href='#' as='span'>
-                  <NavLink to='/login' >Login</NavLink>
-                </Nav.Link>
-                <Nav.Link href='#' as='span'>
-                  <NavLink to='/register' >Create account</NavLink>
-                </Nav.Link>
-              </>
-            }
-
-            {props.user &&
-              <>
-                <Nav.Link href='#' as='span' >
-                  <NavLink to='/tournaments' >My tournaments</NavLink>
-                </Nav.Link>
-                <Nav.Link href='#' as='span' >
-                  <NavLink to='/tournament' >Create tournament</NavLink>
-                </Nav.Link>
-                <Nav.Link href='#' as='span'>
-                  <Nav.Item onClick={handleLogout} ><IoIosLogOut /></Nav.Item>
-                </Nav.Link>
-              </>
-            }
           </Nav>
+
+          {user &&
+            <>
+              <Nav className='justify-content-center mr-auto'>
+                <Nav.Link href='#' as='span' >
+                  <NavLink to='/tournaments' >Manage tournaments</NavLink>
+                </Nav.Link>
+                <Nav.Link href='#' as='span' >
+                  <NavLink to='/tournament' >Create new tournament</NavLink>
+                </Nav.Link>
+              </Nav>
+              <Nav>
+                <Nav.Link href='#' as='span'>
+                  <NavLink to='/' onClick={handleLogout} >Logout</NavLink>
+                </Nav.Link>
+              </Nav>
+            </>
+          }
+
+          {!user &&
+            <Nav>
+              <Nav.Link href='#' as='span'>
+                <HashLink smooth to='/#loginform' >Login</HashLink>
+              </Nav.Link>
+              <Nav.Link href='#' as='span'>
+                <NavLink to='/register' >Create account</NavLink>
+              </Nav.Link>
+            </Nav>
+          }
         </Navbar.Collapse>
       </Navbar>
     </Row>

@@ -4,11 +4,10 @@ import { Row, Col, Nav } from 'react-bootstrap'
 import { GoMarkGithub, GoQuestion } from 'react-icons/go'
 import { IoMdHome } from 'react-icons/io'
 
-const Footer = () => {
-
-  return (
-    <Row className='ninja-banner'>
-      <Col xs={12} md={12} style={{ marginTop: '2rem' }}>
+const Footer = () =>
+  <>
+    <Row className='ninja-banner mt-5'>
+      <Col xs={12} md={12} className='mt-4'>
         <Nav className='justify-content-center'>
           <Nav.Link as='span'>
             <NavLink to='/' ><IoMdHome /></NavLink>
@@ -21,11 +20,10 @@ const Footer = () => {
           </Nav.Link>
         </Nav>
       </Col>
-      <Col xs={12} md={12} style={{ marginTop: '2rem' }} >
+      <Col xs={12} md={12} className='mt-4' >
         <p>&copy; Miika Somero 2020</p>
       </Col>
     </Row>
-  )
-}
+  </>
 
 export default Footer

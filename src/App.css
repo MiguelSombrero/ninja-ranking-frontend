@@ -1,7 +1,15 @@
 .App {
     text-align: center;
 }
-  
+
+a {
+    color: rgb(54, 51, 124);
+}
+ 
+span a {
+    font-size: larger;
+}
+
 .form {
     max-width: 25rem;
     margin: auto;
