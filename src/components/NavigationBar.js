@@ -19,7 +19,7 @@ const Navigation = ({ user }) => {
   }
 
   return (
-    <Row>
+    <Row id='top'>
       <Navbar as={Col} collapseOnSelect expand='lg' style={{ backgroundColor: 'rgb(252, 156, 217)' }}>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>

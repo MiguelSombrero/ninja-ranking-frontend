@@ -42,7 +42,7 @@ const App = () => {
     loggedUser && tournaments.filter(t => t.account_id === loggedUser.id)
 
   return (
-    <Container fluid className='px-0' id='top'>
+    <Container fluid className='px-0'>
       <BrowserRouter>
         <NavigationBar
           user={loggedUser}
@@ -76,7 +76,7 @@ const App = () => {
           </Route>
         </Switch>
 
-        <HashLink smooth to='/#top'>
+        <HashLink smooth to='#top'>
           <GoArrowUp
             style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: '9999' }}
           />

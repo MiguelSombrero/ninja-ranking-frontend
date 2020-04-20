@@ -6,7 +6,6 @@ import AddResult from './AddResult'
 
 const ManageTournament = ({ tournaments }) => {
   const [showAddResult, setShowAddResult] = useState(false)
-  const [currentPlayer, setCurrentPlayer] = useState(null)
   const tournamentId = useParams().id
 
   const players = useSelector(state =>
@@ -15,15 +14,11 @@ const ManageTournament = ({ tournaments }) => {
 
   const tournament = tournaments.find(t => t.id === Number(tournamentId))
 
+  const handleCloseAddResult = () => setShowAddResult(false)
+  const handleShowAddResult = () => setShowAddResult(true)
+
   if (!tournament) {
     return null
-  }
-
-  const handleCloseAddResult = () => setShowAddResult(false)
-
-  const handleShowAddResult = player => {
-    setCurrentPlayer(player)
-    setShowAddResult(true)
   }
 
   return (
@@ -31,10 +26,10 @@ const ManageTournament = ({ tournaments }) => {
       <Tournament
         tournament={tournament}
         players={players}
-        addResult={handleShowAddResult}
+        handleShowAddResult={handleShowAddResult}
       />
       <AddResult
-        player={currentPlayer}
+        players={players}
         obstacles={tournament.obstacles}
         show={showAddResult}
         close={handleCloseAddResult}

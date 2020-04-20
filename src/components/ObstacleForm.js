@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
 import { useTextField } from '../hooks'
 import { createObstacle } from '../reducers/obstaclesReducer'
-import { updateTournament } from '../reducers/tournamentsReducer'
+import { updateTournamentState } from '../reducers/tournamentsReducer'
 import NinjaButton from './NinjaButton'
 
 const ObstacleForm = ({ tournament }) => {
@@ -31,7 +31,7 @@ const ObstacleForm = ({ tournament }) => {
         obstacles: [...tournament.obstacles, savedObstacle]
       }
 
-      dispatch(updateTournament(updatedTournament))
+      dispatch(updateTournamentState(updatedTournament))
       setName('')
 
     } catch (exception) {

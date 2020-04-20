@@ -37,7 +37,14 @@ export const createTournament = (tournament) => {
   }
 }
 
-export const updateTournament = updatedTournament => {
+export const updateTournament = (tournament) => {
+  return async dispatch => {
+    const updatedTournament = await tournamentService.update(tournament.id, tournament)
+    dispatch(updateTournamentState(updatedTournament))
+  }
+}
+
+export const updateTournamentState = updatedTournament => {
   return {
     type: 'UPDATE_TOURNAMENT',
     updatedTournament

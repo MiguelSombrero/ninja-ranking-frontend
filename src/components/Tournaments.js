@@ -31,6 +31,7 @@ const Tournaments = ({ tournaments }) => {
       </Row>
       <NinjaBanner
         text='Past tournaments'
+        type='description'
       />
       <Row>
         <Col xs={12} sm={{ span: 6, offset: 3 }} >

@@ -5,13 +5,14 @@ import { updatePlayer } from '../reducers/playersReducer'
 import { useDispatch } from 'react-redux'
 import NinjaButton from './NinjaButton'
 
-const AddResult = ({ show, close, player, obstacles }) => {
-  const dispatch = useDispatch()
+const AddResult = ({ show, close, players, obstacles }) => {
   const [validated, setValidated] = useState(false)
+  const [currentPlayer, setCurrentPlayer] = useState(null)
   const [time, setTime] = useState(0)
   const [passedObstacles, setPassedObstacles] = useState([])
+  const dispatch = useDispatch()
 
-  if (!player) {
+  if (!players) {
     return null
   }
 
@@ -23,8 +24,12 @@ const AddResult = ({ show, close, player, obstacles }) => {
   const handleSetPassedObstacle = id =>
     setPassedObstacles([...passedObstacles, id])
 
-  const handleChangeTime = event => {
+  const handleTimeChange = event => {
     setTime(event.target.value)
+  }
+
+  const handlePlayerChange = event => {
+    setCurrentPlayer(players.find(p => p.nickname === event.target.value))
   }
 
   const handleSaveResult = async (event) => {
@@ -36,7 +41,7 @@ const AddResult = ({ show, close, player, obstacles }) => {
     }
 
     const result = {
-      player_id: player.id,
+      player_id: currentPlayer.id,
       time,
       passed_obstacles: passedObstacles
     }
@@ -44,8 +49,8 @@ const AddResult = ({ show, close, player, obstacles }) => {
     try {
       const savedResult = await dispatch(createResult(result))
 
-      const updatedPlayer = { ...player,
-        results: [...player.results, savedResult]
+      const updatedPlayer = { ...currentPlayer,
+        results: [...currentPlayer.results, savedResult]
       }
 
       dispatch(updatePlayer(updatedPlayer))
@@ -60,14 +65,24 @@ const AddResult = ({ show, close, player, obstacles }) => {
     <Modal show={show} onHide={close} centered>
       <Modal.Header closeButton>
         <Modal.Title>
-          Add result for player {player.nickname}
+          Add result for player
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form noValidate validated={validated} onSubmit={handleSaveResult} >
           <Form.Group >
+            <Form.Label>Select player</Form.Label>
+            <select id='players' onChange={handlePlayerChange}>
+              {players.map(p =>
+                <option key={p.id}>
+                  {p.nickname}
+                </option>
+              )}
+            </select>
+          </Form.Group>
+          <Form.Group >
             <Form.Label>Time</Form.Label>
-            <Form.Control type='number' onChange={handleChangeTime} placeholder='Time' />
+            <Form.Control type='number' onChange={handleTimeChange} placeholder='Time' />
           </Form.Group>
           {obstacles.map(o =>
             <Form.Group key={o.id}>

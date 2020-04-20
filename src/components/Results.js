@@ -15,8 +15,6 @@ const Results = ({ obstacles, players }) => {
     .flat()
     .sort(byPassedObstacles && byTime)
 
-  console.log(results)
-
   return (
     <Row>
       <Col>

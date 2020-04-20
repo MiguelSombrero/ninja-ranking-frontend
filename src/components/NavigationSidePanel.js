@@ -4,7 +4,12 @@ import NinjaButton from './NinjaButton'
 import ObstacleForm from './ObstacleForm'
 import PlayerForm from './PlayerForm'
 
-const NavigationSidePanel = ({ tournament }) =>
+const NavigationSidePanel = ({
+  tournament,
+  handleShowAddResult,
+  handleEndTournament
+}) =>
+
   <Nav className='flex-column'>
     <ObstacleForm
       tournament={tournament}
@@ -13,7 +18,12 @@ const NavigationSidePanel = ({ tournament }) =>
       tournament={tournament}
     />
     <NinjaButton
+      text='Add result'
+      onClick={handleShowAddResult}
+    />
+    <NinjaButton
       text='End tournament'
+      onClick={handleEndTournament}
     />
     <NinjaButton
       text='Past tournaments'
