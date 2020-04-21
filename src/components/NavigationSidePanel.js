@@ -25,9 +25,6 @@ const NavigationSidePanel = ({
       text='End tournament'
       onClick={handleEndTournament}
     />
-    <NinjaButton
-      text='Past tournaments'
-    />
   </Nav>
 
 export default NavigationSidePanel

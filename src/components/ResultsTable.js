@@ -3,12 +3,10 @@ import { Row, Col, Table } from 'react-bootstrap'
 import ResultTableRow from './ResultTableRow'
 
 const Results = ({ obstacles, players }) => {
-  const hasResults = player => player.results.length > 0
   const byPassedObstacles = (r1, r2) => r1.passed_obstacles.length > r2.passed_obstacles.length ? -1 : 1
   const byTime = (r1, r2) => r1.time > r2.time ? 1 : -1
 
   const results = players
-    .filter(hasResults)
     .map(player => player.results
       .map(result => Object.assign(result, { nickname: player.nickname }))
     )

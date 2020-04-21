@@ -15,9 +15,14 @@ const TournamentOverview = ({ tournament }) => {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col xs={12} sm={6}>
           <h6 className='text-muted'>
             Created on {moment(tournament.created).format('MMMM Do YYYY')}
+          </h6>
+        </Col>
+        <Col xs={12} sm={6}>
+          <h6 className='float-right' style={{ color: tournament.active ? 'green' : 'red' }}>
+            {tournament.active ? 'active' : 'inactive' }
           </h6>
         </Col>
       </Row>

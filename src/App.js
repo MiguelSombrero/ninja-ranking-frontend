@@ -13,6 +13,7 @@ import TournamentForm from './components/TournamentForm'
 import Tournaments from './components/Tournaments'
 import Footer from './components/Footer'
 import ManageTournament from './components/ManageTournament'
+import About from './components/About'
 import { GoArrowUp } from 'react-icons/go'
 
 import './App.css'
@@ -42,13 +43,17 @@ const App = () => {
     loggedUser && tournaments.filter(t => t.account_id === loggedUser.id)
 
   return (
-    <Container fluid className='px-0'>
+    <Container fluid>
       <BrowserRouter>
         <NavigationBar
           user={loggedUser}
         />
 
         <Switch>
+          <Route path='/about'>
+            <About />
+          </Route>
+
           <Route path='/register'>
             <RegisterForm />
           </Route>

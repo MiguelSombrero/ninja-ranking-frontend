@@ -8,11 +8,6 @@ export const setToken = newToken => {
 }
 
 export const useResource = (baseUrl) => {
-  const config = {
-    headers: {
-      Authorization: token
-    }
-  }
 
   const getAll = async () => {
     const res = await axios.get(baseUrl)
@@ -20,6 +15,11 @@ export const useResource = (baseUrl) => {
   }
 
   const create = async (resource) => {
+    const config = {
+      headers: {
+        Authorization: token
+      }
+    }
     const res = await axios.post(baseUrl, resource, config)
     return res.data
   }
@@ -30,6 +30,11 @@ export const useResource = (baseUrl) => {
   }
 
   const update = async (id, resource) => {
+    const config = {
+      headers: {
+        Authorization: token
+      }
+    }
     const res = await axios.put(`${baseUrl}/${id}`, resource, config)
     return res.data
   }

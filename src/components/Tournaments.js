@@ -12,43 +12,39 @@ const Tournaments = ({ tournaments }) => {
   }
 
   const activeTournaments = tournaments.filter(t => t.active)
-  const inactiveTournaments = tournaments.filter(t => !t.active)
+  const pastTournaments = tournaments.filter(t => !t.active)
+
+  const renderShowButton = () =>
+    <Col xs={12} sm={6}>
+      <NinjaButton
+        text='Show past tournaments'
+        onClick={() => SetShowPastTournaments(true)}
+      />
+    </Col>
+
+  const renderTournaments = tournaments =>
+    <Col xs={12} sm={6} >
+      {tournaments.map(t =>
+        <TournamentOverview
+          key={t.id}
+          tournament={t}
+        />
+      )}
+    </Col>
 
   return (
     <>
       <NinjaBanner
-        text='Active tournaments'
+        text='Your tournaments'
       />
-      <Row>
-        <Col xs={12} sm={{ span: 6, offset: 3 }} >
-          {activeTournaments.map(t =>
-            <TournamentOverview
-              key={t.id}
-              tournament={t}
-            />
-          )}
-        </Col>
+      <Row className='justify-content-center'>
+        {renderTournaments(activeTournaments)}
       </Row>
-      <NinjaBanner
-        text='Past tournaments'
-        type='description'
-      />
-      <Row>
-        <Col xs={12} sm={{ span: 6, offset: 3 }} >
-          {showPastTournaments ?
-            inactiveTournaments.map(t =>
-              <TournamentOverview
-                key={t.id}
-                tournament={t}
-              />
-            )
-            :
-            <NinjaButton
-              text='Show'
-              onClick={() => SetShowPastTournaments(true)}
-            />
-          }
-        </Col>
+      <Row className='justify-content-center mt-4'>
+        {showPastTournaments
+          ? renderTournaments(pastTournaments)
+          : renderShowButton()
+        }
       </Row>
     </>
   )

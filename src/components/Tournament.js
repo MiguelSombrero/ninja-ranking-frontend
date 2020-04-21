@@ -1,12 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { updateTournament } from '../reducers/tournamentsReducer'
 import { useDispatch } from 'react-redux'
 import NavigationSidePanel from './NavigationSidePanel'
 import NinjaBanner from './NinjaBanner'
-import Results from './Results'
+import ResultsTable from './ResultsTable'
 
-const Tournament = ({ tournament, players, handleShowAddResult }) => {
+const Tournament = ({ tournament, history, players, handleShowAddResult }) => {
   const dispatch = useDispatch()
 
   if (!tournament) {
@@ -17,6 +18,7 @@ const Tournament = ({ tournament, players, handleShowAddResult }) => {
     try {
       const updatedTournament = { ...tournament, active: false }
       dispatch(updateTournament(updatedTournament))
+      history.push('/tournaments')
 
     } catch (exception) {
       console.log(exception)
@@ -71,7 +73,7 @@ const Tournament = ({ tournament, players, handleShowAddResult }) => {
         text='Results'
         type='description'
       />
-      <Results
+      <ResultsTable
         obstacles={tournament.obstacles}
         players={players}
       />
@@ -79,4 +81,4 @@ const Tournament = ({ tournament, players, handleShowAddResult }) => {
   )
 }
 
-export default Tournament
+export default withRouter(Tournament)

@@ -35,40 +35,38 @@ const LoginForm = (props) => {
   }
 
   return (
-    <>
-      <h2 id='loginform' className='text-center mt-4'>
+    <Row id='loginform'>
+      <Col>
+        <h2 className='text-center mt-4'>
         Login to Ninja Ranking
-      </h2>
-      <Row className='form'>
-        <Col>
-          <Form noValidate validated={validated} onSubmit={handleLogin} >
-            <Form.Group >
-              <Form.Label>Username</Form.Label>
-              <Form.Control {...username} placeholder='Username' />
-              <Form.Control.Feedback type='invalid' >{usernameErrors}</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group >
-              <Form.Label>Password</Form.Label>
-              <Form.Control {...password} placeholder='Password' />
-              <Form.Control.Feedback type='invalid' >{passwordErrors}</Form.Control.Feedback>
-            </Form.Group>
-            <NinjaButton text='Login' />
-          </Form>
-        </Col>
-      </Row>
-      <Row className='form'>
-        <Col xs={12} md={6} >
-          <small className='float-left'>
-            <Link to='/register'> Not yet a member?</Link>
-          </small>
-        </Col>
-        <Col xs={12} md={6}>
-          <small className='float-right'>
-            <Link to='/register'> Forgot your password?</Link>
-          </small>
-        </Col>
-      </Row>
-    </>
+        </h2>
+        <Form className='form' noValidate validated={validated} onSubmit={handleLogin} >
+          <Form.Group >
+            <Form.Label>Username</Form.Label>
+            <Form.Control {...username} placeholder='Username' />
+            <Form.Control.Feedback type='invalid' >{usernameErrors}</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Password</Form.Label>
+            <Form.Control {...password} placeholder='Password' />
+            <Form.Control.Feedback type='invalid' >{passwordErrors}</Form.Control.Feedback>
+          </Form.Group>
+          <NinjaButton text='Login' />
+          <Form.Row>
+            <Col xs={12} md={6} >
+              <small className='float-left'>
+                <Link to='/register'> Not yet a member?</Link>
+              </small>
+            </Col>
+            <Col xs={12} md={6}>
+              <small className='float-right'>
+                <Link to='/register'> Forgot your password?</Link>
+              </small>
+            </Col>
+          </Form.Row>
+        </Form>
+      </Col>
+    </Row>
   )
 }
 

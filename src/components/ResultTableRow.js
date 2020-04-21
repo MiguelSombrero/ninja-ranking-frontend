@@ -10,10 +10,7 @@ const ResultTableRow = ({ result, obstacles }) => {
       <td>{result.nickname}</td>
 
       {obstacles.map(o =>
-        <td
-          key={o.id}
-          className='justify-content-center align-center'
-        >
+        <td key={o.id}>
           {obstacleIsPassed(result, o)
             ? <FaCheckCircle color='green' />
             : <FaExclamationCircle color='red' />

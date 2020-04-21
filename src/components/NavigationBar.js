@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import { logoutUser } from '../reducers/loginReducer'
 import { useDispatch } from 'react-redux'

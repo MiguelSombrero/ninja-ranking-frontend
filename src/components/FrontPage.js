@@ -6,31 +6,25 @@ import NinjaBanner from './NinjaBanner'
 const FrontPage = ({ user }) => {
 
   return (
-    <>
+    <Row className='justify-content-center'>
       <Image fluid
         src='/ninja_ranking_banner.jpg'
         style={{ width: '100%', height: 'auto' }}
       />
 
       {!user &&
-        <>
-          <LoginForm />
-        </>
+        <LoginForm />
       }
 
       {user &&
-        <>
-          <Row>
-            <Col className='text-center'>
-              <NinjaBanner
-                text={`Welcome back ${user.name}!`}
-                type='description'
-              />
-            </Col>
-          </Row>
-        </>
+        <Col>
+          <NinjaBanner
+            text={`Welcome back ${user.name}!`}
+            type='description'
+          />
+        </Col>
       }
-    </>
+    </Row>
   )
 }
 
