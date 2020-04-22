@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col, Table } from 'react-bootstrap'
 import ResultTableRow from './ResultTableRow'
+import ObstacleTableRow from './ObstacleTableRow'
 
 const Results = ({ obstacles, players }) => {
   const byPassedObstacles = (r1, r2) => r1.passed_obstacles.length > r2.passed_obstacles.length ? -1 : 1
@@ -35,6 +36,12 @@ const Results = ({ obstacles, players }) => {
               />
             )}
           </tbody>
+          <thead>
+            <ObstacleTableRow
+              results={results}
+              obstacles={obstacles}
+            />
+          </thead>
         </Table>
       </Col>
     </Row>

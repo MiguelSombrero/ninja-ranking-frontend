@@ -54,6 +54,9 @@ const AddResult = ({ show, close, players, obstacles }) => {
       }
 
       dispatch(updatePlayer(updatedPlayer))
+      setTime(0)
+      setCurrentPlayer(null)
+      setPassedObstacles([])
       close()
 
     } catch (exception) {
