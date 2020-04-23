@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import { logoutUser } from '../reducers/loginReducer'
 import { useDispatch } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 import { GoHome } from 'react-icons/go'
 
@@ -63,4 +62,4 @@ const Navigation = ({ user }) => {
   )
 }
 
-export default withRouter(Navigation)
+export default Navigation

@@ -17,7 +17,7 @@ const Tournament = ({ tournament, history, players, handleShowAddResult }) => {
   const handleEndTournament = async () => {
     try {
       const updatedTournament = { ...tournament, active: false }
-      dispatch(updateTournament(updatedTournament))
+      await dispatch(updateTournament(updatedTournament))
       history.push('/tournaments')
 
     } catch (exception) {

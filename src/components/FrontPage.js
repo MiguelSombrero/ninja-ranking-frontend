@@ -34,9 +34,8 @@ const FrontPage = ({ user, tournaments }) => {
           <NinjaBanner
             text={`Welcome back ${user.name}`}
           />
+          <h3 className='text-center'>Here is some recent tournaments to check:</h3>
           <Row className='justify-content-center'>
-            <h3>Here is some recent tournaments to check:</h3>
-
             {renderTournaments()}
           </Row>
         </Col>

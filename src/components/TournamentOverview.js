@@ -17,7 +17,10 @@ const TournamentOverview = ({ tournament }) => {
       <Row>
         <Col xs={12} sm={6}>
           <h6 className='text-muted'>
-            Created on {moment(tournament.created).format('MMMM Do YYYY')}
+            Created on {moment(tournament.created).format('MMMM Do YYYY')},
+          </h6>
+          <h6 className='text-muted'>
+            by {tournament.account.name}
           </h6>
         </Col>
         <Col xs={12} sm={6}>
