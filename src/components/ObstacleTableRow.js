@@ -8,13 +8,16 @@ const ObstacleTableRow = ({ results, obstacles }) => {
   const passedCount = (obstacle) =>
     results.filter(result => result.passed_obstacles.includes(obstacle.id)).length
 
+  const passedRatio = (obstacle) =>
+    Math.round(passedCount(obstacle) / results.length * 100) / 100
+
   return (
     <tr>
       <th>Obstacle pass-%</th>
 
       {obstacles.map(o =>
         <th key={o.id}>
-          {Math.round(passedCount(o) / results.length * 100) / 100}
+          {passedRatio(o)}
         </th>
       )}
 

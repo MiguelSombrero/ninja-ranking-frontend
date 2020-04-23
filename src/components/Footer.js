@@ -2,15 +2,14 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import { Row, Col, Nav } from 'react-bootstrap'
-import { GoMarkGithub, GoQuestion } from 'react-icons/go'
-import { IoMdHome } from 'react-icons/io'
+import { GoMarkGithub, GoQuestion, GoHome } from 'react-icons/go'
 
 const Footer = () =>
   <Row className='ninja-banner mt-5'>
     <Col xs={12} md={12} className='mt-4'>
       <Nav className='justify-content-center'>
         <Nav.Link as='span'>
-          <HashLink smooth to='/#top' ><IoMdHome /></HashLink>
+          <HashLink smooth to='/#top' ><GoHome /></HashLink>
         </Nav.Link>
         <Nav.Link href='https://github.com/MiguelSombrero/ninja-ranking-react'>
           <GoMarkGithub />
