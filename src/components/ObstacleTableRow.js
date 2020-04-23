@@ -1,9 +1,6 @@
 import React from 'react'
 
 const ObstacleTableRow = ({ results, obstacles }) => {
-  if(!results || !obstacles) {
-    return null
-  }
 
   const passedCount = (obstacle) =>
     results.filter(result => result.passed_obstacles.includes(obstacle.id)).length
@@ -17,7 +14,7 @@ const ObstacleTableRow = ({ results, obstacles }) => {
 
       {obstacles.map(o =>
         <th key={o.id}>
-          {passedRatio(o)}
+          {results.length === 0 ? 0.0 : passedRatio(o)}
         </th>
       )}
 

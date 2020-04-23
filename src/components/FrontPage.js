@@ -2,8 +2,21 @@ import React from 'react'
 import { Row, Col, Image } from 'react-bootstrap'
 import LoginForm from './LoginForm'
 import NinjaBanner from './NinjaBanner'
+import TournamentOverview from './TournamentOverview'
 
-const FrontPage = ({ user }) => {
+const FrontPage = ({ user, tournaments }) => {
+
+  const activeTournaments = tournaments.filter(t => t.active)
+
+  const renderTournaments = () =>
+    <Col xs={12} sm={6} className='mt-4'>
+      {activeTournaments.map(t =>
+        <TournamentOverview
+          key={t.id}
+          tournament={t}
+        />
+      )}
+    </Col>
 
   return (
     <Row className='justify-content-center'>
@@ -19,9 +32,13 @@ const FrontPage = ({ user }) => {
       {user &&
         <Col>
           <NinjaBanner
-            text={`Welcome back ${user.name}!`}
-            type='description'
+            text={`Welcome back ${user.name}`}
           />
+          <Row className='justify-content-center'>
+            <h3>Here is some recent tournaments to check:</h3>
+
+            {renderTournaments()}
+          </Row>
         </Col>
       }
     </Row>

@@ -40,8 +40,10 @@ const AddResult = ({ show, close, players, obstacles }) => {
       return
     }
 
+    const player = currentPlayer ? currentPlayer : players[0]
+
     const result = {
-      player_id: currentPlayer.id,
+      player_id: player.id,
       time,
       passed_obstacles: passedObstacles
     }
@@ -49,8 +51,8 @@ const AddResult = ({ show, close, players, obstacles }) => {
     try {
       const savedResult = await dispatch(createResult(result))
 
-      const updatedPlayer = { ...currentPlayer,
-        results: [...currentPlayer.results, savedResult]
+      const updatedPlayer = { ...player,
+        results: [...player.results, savedResult]
       }
 
       dispatch(updatePlayer(updatedPlayer))

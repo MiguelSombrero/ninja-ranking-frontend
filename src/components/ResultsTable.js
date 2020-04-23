@@ -12,7 +12,7 @@ const Results = ({ obstacles, players }) => {
       .map(result => Object.assign(result, { nickname: player.nickname }))
     )
     .flat()
-    .sort(byPassedObstacles && byTime)
+    .sort(byTime && byPassedObstacles)
 
   return (
     <Row>

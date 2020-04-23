@@ -77,6 +77,7 @@ const App = () => {
           <Route path='/'>
             <FrontPage
               user={loggedUser}
+              tournaments={tournaments}
             />
           </Route>
         </Switch>
