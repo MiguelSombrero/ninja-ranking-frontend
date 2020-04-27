@@ -36,11 +36,11 @@ const LoginForm = (props) => {
 
   return (
     <Row id='loginform'>
-      <Col>
+      <Col className='form'>
         <h2 className='text-center mt-4'>
         Login to Ninja Ranking
         </h2>
-        <Form className='form' noValidate validated={validated} onSubmit={handleLogin} >
+        <Form noValidate validated={validated} onSubmit={handleLogin} >
           <Form.Group >
             <Form.Label>Username</Form.Label>
             <Form.Control {...username} placeholder='Username' />

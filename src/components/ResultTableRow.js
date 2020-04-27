@@ -18,7 +18,9 @@ const ResultTableRow = ({ result, obstacles }) => {
         </td>
       )}
 
+      <td>{result.passed_obstacles.length}</td>
       <td>{result.time}</td>
+      <td>{result.not_passed}</td>
     </tr>
   )
 }

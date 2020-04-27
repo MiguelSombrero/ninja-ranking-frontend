@@ -7,7 +7,7 @@ import NavigationSidePanel from './NavigationSidePanel'
 import NinjaBanner from './NinjaBanner'
 import ResultsTable from './ResultsTable'
 
-const Tournament = ({ tournament, history, players, handleShowAddResult }) => {
+const Tournament = ({ tournament, history, players, handleShowAddResult, user }) => {
   const dispatch = useDispatch()
 
   if (!tournament) {
@@ -47,6 +47,7 @@ const Tournament = ({ tournament, history, players, handleShowAddResult }) => {
         text={tournament.name}
       />
       <Row>
+        {tournament.active && user.id === tournament.account.id &&
         <Col xs={12} sm={{ span: 3, offset: 1 }} >
           <NavigationSidePanel
             tournament={tournament}
@@ -54,6 +55,7 @@ const Tournament = ({ tournament, history, players, handleShowAddResult }) => {
             handleEndTournament={handleEndTournament}
           />
         </Col>
+        }
         <Col xs={12} sm={{ span: 3, offset: 1 }} >
           <h4>Obstacles</h4>
 

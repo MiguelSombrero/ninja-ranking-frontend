@@ -12,10 +12,6 @@ const AddResult = ({ show, close, players, obstacles }) => {
   const [passedObstacles, setPassedObstacles] = useState([])
   const dispatch = useDispatch()
 
-  if (!players) {
-    return null
-  }
-
   const isPassed = id => passedObstacles.includes(id)
 
   const handleRemovePassedObstacle = id =>
@@ -77,18 +73,21 @@ const AddResult = ({ show, close, players, obstacles }) => {
         <Form noValidate validated={validated} onSubmit={handleSaveResult} >
           <Form.Group >
             <Form.Label>Select player</Form.Label>
-            <select id='players' onChange={handlePlayerChange}>
-              {players.map(p =>
-                <option key={p.id}>
-                  {p.nickname}
-                </option>
-              )}
-            </select>
+            <Form.Row>
+              <select id='players' onChange={handlePlayerChange}>
+                {players.map(p =>
+                  <option key={p.id}>
+                    {p.nickname}
+                  </option>
+                )}
+              </select>
+            </Form.Row>
           </Form.Group>
           <Form.Group >
             <Form.Label>Time</Form.Label>
             <Form.Control type='number' onChange={handleTimeChange} placeholder='Time' />
           </Form.Group>
+          <Form.Label>Select passed obstacles</Form.Label>
           {obstacles.map(o =>
             <Form.Group key={o.id}>
               <Form.Check

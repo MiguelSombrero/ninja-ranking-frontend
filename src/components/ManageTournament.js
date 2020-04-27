@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Tournament from './Tournament'
-import AddResult from './AddResult'
+import ResultForm from './ResultForm'
 
-const ManageTournament = ({ tournaments }) => {
+const ManageTournament = ({ tournaments, user }) => {
   const [showAddResult, setShowAddResult] = useState(false)
   const tournamentId = useParams().id
 
@@ -27,8 +27,9 @@ const ManageTournament = ({ tournaments }) => {
         tournament={tournament}
         players={players}
         handleShowAddResult={handleShowAddResult}
+        user={user}
       />
-      <AddResult
+      <ResultForm
         players={players}
         obstacles={tournament.obstacles}
         show={showAddResult}
