@@ -46,20 +46,20 @@ const RegisterForm = (props) => {
           <Form noValidate validated={validated} onSubmit={handleRegister} >
             <Form.Group >
               <Form.Label>Name</Form.Label>
-              <Form.Control {...name} placeholder='Name' />
+              <Form.Control {...name} placeholder='Name' id='registerName' />
               <Form.Control.Feedback type='invalid' >{nameErrors}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group >
               <Form.Label>Username</Form.Label>
-              <Form.Control {...username} placeholder='Username' />
+              <Form.Control {...username} placeholder='Username' id='registerUsername' />
               <Form.Control.Feedback type='invalid' >{usernameErrors}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group >
               <Form.Label>Password</Form.Label>
-              <Form.Control {...password} placeholder='Password' />
+              <Form.Control {...password} placeholder='Password' id='registerPassword' />
               <Form.Control.Feedback type='invalid' >{passwordErrors}</Form.Control.Feedback>
             </Form.Group>
-            <NinjaButton text='Register' />
+            <NinjaButton text='Register' id='registerButton' />
           </Form>
         </Col>
       </Row>
