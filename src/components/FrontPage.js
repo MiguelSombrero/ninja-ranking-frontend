@@ -8,39 +8,44 @@ const FrontPage = ({ user, tournaments }) => {
 
   const activeTournaments = tournaments.filter(t => t.active)
 
-  const renderTournaments = () =>
-    <Col xs={12} sm={6} className='mt-4'>
-      {activeTournaments.map(t =>
-        <TournamentOverview
-          key={t.id}
-          tournament={t}
-        />
-      )}
-    </Col>
-
   return (
-    <Row className='justify-content-center'>
-      <Image fluid
-        src='/ninja_ranking_banner.jpg'
-        style={{ width: '100%', height: 'auto' }}
+    <>
+      <Row>
+        <Image
+          src='/ninja_ranking_banner.jpg'
+          style={{ width: '100%', height: 'auto' }}
+        />
+      </Row>
+
+      <NinjaBanner
+        text={user
+          ? `Welcome back ${user.name}`
+          : 'Login to Ninja Ranking'
+        }
       />
 
       {!user &&
-        <LoginForm />
+        <Row>
+          <Col className='form'>
+            <LoginForm />
+          </Col>
+        </Row>
       }
 
       {user &&
-        <Col>
-          <NinjaBanner
-            text={`Welcome back ${user.name}`}
-          />
+        <Row className='justify-content-center'>
           <h3 className='text-center'>Here is some recent tournaments to check:</h3>
-          <Row className='justify-content-center'>
-            {renderTournaments()}
-          </Row>
-        </Col>
+          <Col xs={12} sm={6} className='mt-4'>
+            {activeTournaments.map(t =>
+              <TournamentOverview
+                key={t.id}
+                tournament={t}
+              />
+            )}
+          </Col>
+        </Row>
       }
-    </Row>
+    </>
   )
 }
 

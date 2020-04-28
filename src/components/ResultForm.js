@@ -5,7 +5,7 @@ import { updatePlayer } from '../reducers/playersReducer'
 import { useDispatch } from 'react-redux'
 import NinjaButton from './NinjaButton'
 
-const AddResult = ({ show, close, players, obstacles }) => {
+const ResultForm = ({ show, close, players, obstacles }) => {
   const [validated, setValidated] = useState(false)
   const [currentPlayer, setCurrentPlayer] = useState(null)
   const [time, setTime] = useState(0)
@@ -120,4 +120,4 @@ const AddResult = ({ show, close, players, obstacles }) => {
   )
 }
 
-export default AddResult
+export default ResultForm

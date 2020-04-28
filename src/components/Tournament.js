@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { updateTournament } from '../reducers/tournamentsReducer'
 import { useDispatch } from 'react-redux'
 import NavigationSidePanel from './NavigationSidePanel'
 import NinjaBanner from './NinjaBanner'
 import ResultsTable from './ResultsTable'
+import ResultForm from './ResultForm'
+import ItemList from './ItemList'
 
-const Tournament = ({ tournament, history, players, handleShowAddResult, user }) => {
+const Tournament = ({ tournaments, history, user }) => {
+  const [showAddResult, setShowAddResult] = useState(false)
   const dispatch = useDispatch()
+  const tournamentId = useParams().id
+
+  const players = useSelector(state =>
+    state.players.filter(p => p.tournament_id === Number(tournamentId))
+  )
+
+  const tournament = tournaments.find(t => t.id === Number(tournamentId))
+
+  const handleCloseAddResult = () => setShowAddResult(false)
+  const handleShowAddResult = () => setShowAddResult(true)
 
   if (!tournament) {
     return null
@@ -25,22 +40,6 @@ const Tournament = ({ tournament, history, players, handleShowAddResult, user })
     }
   }
 
-  const renderObstacles = tournament.obstacles.length === 0
-    ? () => 'no obstacles'
-    : () => tournament.obstacles.map(t =>
-      <ListGroup.Item key={t.id} >
-        {t.name}
-      </ListGroup.Item>
-    )
-
-  const renderPlayers = players.length === 0
-    ? () => 'no players'
-    : () => players.map(p =>
-      <ListGroup.Item key={p.id}>
-        {p.nickname}
-      </ListGroup.Item>
-    )
-
   return (
     <>
       <NinjaBanner
@@ -56,19 +55,19 @@ const Tournament = ({ tournament, history, players, handleShowAddResult, user })
           />
         </Col>
         }
-        <Col xs={12} sm={{ span: 3, offset: 1 }} >
-          <h4>Obstacles</h4>
 
-          <ListGroup variant='flush'>
-            {renderObstacles()}
-          </ListGroup>
+        <Col xs={12} sm={{ span: 3, offset: 1 }} >
+          <ItemList
+            title='Obstacles'
+            items={tournament.obstacles.map(o => o.name)}
+          />
         </Col>
-        <Col xs={12} sm={{ span: 3, offset: 1 }} >
-          <h4>Players</h4>
 
-          <ListGroup variant='flush'>
-            {renderPlayers()}
-          </ListGroup>
+        <Col xs={12} sm={{ span: 3, offset: 1 }} >
+          <ItemList
+            title='Players'
+            items={players.map(p => p.nickname)}
+          />
         </Col>
       </Row>
       <NinjaBanner
@@ -78,6 +77,12 @@ const Tournament = ({ tournament, history, players, handleShowAddResult, user })
       <ResultsTable
         obstacles={tournament.obstacles}
         players={players}
+      />
+      <ResultForm
+        players={players}
+        obstacles={tournament.obstacles}
+        show={showAddResult}
+        close={handleCloseAddResult}
       />
     </>
   )

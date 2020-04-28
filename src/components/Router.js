@@ -5,7 +5,7 @@ import RegisterForm from './RegisterForm'
 import About from './About'
 import TournamentForm from './TournamentForm'
 import Tournaments from './Tournaments'
-import ManageTournament from './ManageTournament'
+import Tournament from './Tournament'
 
 const Router = ({ user, tournaments }) => {
 
@@ -24,7 +24,7 @@ const Router = ({ user, tournaments }) => {
 
       {user &&
       <Route path='/tournaments/:id'>
-        <ManageTournament
+        <Tournament
           tournaments={tournaments}
           user={user}
         />

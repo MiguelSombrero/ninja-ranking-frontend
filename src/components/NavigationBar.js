@@ -13,7 +13,7 @@ const Navigation = ({ user }) => {
     try {
       dispatch(logoutUser())
     } catch (exception) {
-      console.log('logout failed, bollocks', exception)
+      console.log('logout failed', exception)
     }
   }
 

@@ -5,7 +5,7 @@ import ObstacleTableRow from './ObstacleTableRow'
 
 const Results = ({ obstacles, players }) => {
   const byPassedObstacles = (r1, r2) => r1.passed_obstacles.length > r2.passed_obstacles.length ? -1 : 1
-  const byNotPassedObstacles = (r1, r2) => r1.not_passed > r2.not_passed ? 1 : -1
+  const byNotPassedObstacles = (r1, r2) => r1.not_passed > r2.not_passed ? -1 : 1
   const byTime = (r1, r2) => r1.time > r2.time ? 1 : -1
 
   const results = players
@@ -35,7 +35,9 @@ const Results = ({ obstacles, players }) => {
     .map(result => Object.assign(result, {
       not_passed: notPassedObstaclesInResult(result)
     }))
-    .sort(byTime && byPassedObstacles && byNotPassedObstacles)
+    .sort(byNotPassedObstacles)
+    .sort(byTime)
+    .sort(byPassedObstacles)
 
   return (
     <Row>

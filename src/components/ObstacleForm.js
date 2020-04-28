@@ -26,8 +26,7 @@ const ObstacleForm = ({ tournament }) => {
         tournament_id: tournament.id
       }))
 
-      const updatedTournament = {
-        ...tournament,
+      const updatedTournament = { ...tournament,
         obstacles: [...tournament.obstacles, savedObstacle]
       }
 

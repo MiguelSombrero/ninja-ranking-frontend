@@ -7,7 +7,7 @@ import { createTournament } from '../reducers/tournamentsReducer'
 import NinjaButton from './NinjaButton'
 import NinjaBanner from './NinjaBanner'
 
-const TournamentForm = (props) => {
+const TournamentForm = ({ history }) => {
   const dispatch = useDispatch()
   const [validated, setValidated] = useState(false)
   const [name, nameErrors] = useTextField('text', 1, 50, true)
@@ -25,7 +25,7 @@ const TournamentForm = (props) => {
         name: name.value
       }))
 
-      props.history.push('/tournaments')
+      history.push('/tournaments')
 
     } catch (exception) {
       console.log('Creation of a tournament failed', exception)

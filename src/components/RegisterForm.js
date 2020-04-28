@@ -29,7 +29,7 @@ const RegisterForm = (props) => {
         name: name.value
       }))
 
-      props.history.push('/login')
+      props.history.push('/#login')
 
     } catch (exception) {
       console.log('Oooops from register form', exception)
